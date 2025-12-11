@@ -19,8 +19,7 @@
         return (
           <div>
             <p>{product}</p>
-            {!discountPrice &&  <p>{price}</p> }
-            {discountPrice && <del> <p>{price}</p> </del>}
+            {discountPrice ? <del> <p>{price}</p> </del> : <p>{price}</p>}
             <p>{discountPrice}</p>
             <button>Add to cart</button>
           </div>
