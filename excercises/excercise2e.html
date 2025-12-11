@@ -15,9 +15,10 @@
       const button = <button>Hello</button>;
       const paragraph = <p>This is a paragraph.</p>;
 
-      function ProductDetails({ product, price, discountPrice }) {
+      function ProductDetails({ product, price, discountPrice, imageSrc }) {
         return (
           <div>
+            <img src={imageSrc} width="100" />
             <p>{product}</p>
             {discountPrice ? <del> <p>{price}</p> </del> : <p>{price}</p>}
             <p>{discountPrice}</p>
@@ -32,14 +33,17 @@
               product="Cotton Socks" 
               price="Price: $10.90" 
               discountPrice="Disscount price: $5.99" 
+              imageSrc="images/cotton-socks.png"
             />
             <ProductDetails 
               product="Tennis balls" 
               price="Price: 6.00" 
+              imageSrc="images/tennis-balls.png"
             />
             <ProductDetails 
               product="Plain T-shirt" 
               price="Price 7.99" 
+              imageSrc="images/plain-t-shirt.png"
             />
           </>
         );
