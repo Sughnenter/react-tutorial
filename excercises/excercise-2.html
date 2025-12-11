@@ -14,14 +14,24 @@
     <script type="text/babel">
       const button = <button>Hello</button>;
       const paragraph = <p>This is a paragraph.</p>;
-      function App(){
-        return(
+
+      function LoginForm() {
+        return (
           <div>
-            Hello welcome to my website
+            <input type="text" placeholder="Email" />
+            <input type="text" placeholder="Password" />
             <button>Login</button>
             <button>Sign UP</button>
           </div>
-        )
+        );
+      }
+      function App() {
+        return (
+          <>
+            Hello welcome to my website
+            <LoginForm />
+          </>
+        );
       }
       const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(<App />);
