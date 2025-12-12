@@ -53,6 +53,7 @@
       }
 
       function ChatMessages(){
+        
         const chatMessages = [
           {message: "Hello Chatbot", sender: "user", id:"id1"},
           {message: "Hello! How can I help you?", sender: "robot", id:"id2"},
@@ -61,11 +62,16 @@
         ];
       
         function sendMessage(){
-          console.log('message sent')
+          chatMessages.push({
+            message: 'test',
+            sender:'user',
+            id: crypto.randomUUID()
+          })
+          console.log(chatMessages)
         }
         return (
           <>
-          <button onClick={sendMessage()}>Send</button>
+          <button onClick={sendMessage}>Send</button>
             {chatMessages.map((chatMesssage) => {
               return (
                 <ChatMessage 
