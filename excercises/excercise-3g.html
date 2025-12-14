@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      // Controlled input component: receives value and onChange from parent
+      function TextInput({ value, onChange  }) {
+        function reset() {
+          value = "";
+        }
+        function example() {
+          value = "Hello World";
+        }
+        return (
+          <div>
+            <input
+              placeholder="Type something"
+              size="30"
+              onChange={onChange}
+              value={value}
+            />
+            <button onClick={reset()}>reset</button>
+            <button onClick={example()}>example</button>
+          </div>
+        );
+      }
+
+      function DisplayText({ text}) {
+        return <p>{text}</p>;
+      }
+
+      function App() {
+        const [text, setText] = React.useState("");
+
+        function handleChange(e) {
+          setText(e.target.value);
+        }
+
+        return (
+          <>
+            <TextInput value={text} onChange={handleChange} />
+            <DisplayText text={text} />
+          </>
+        );
+      }
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+      
+    </script>
+  </body>
+</html>
