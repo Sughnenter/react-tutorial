@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 import "./TrackingPage.css";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 import { Link } from "react-router";
 export function TrackingPage({ cart }) {
   const { orderId, productId } = useParams();
