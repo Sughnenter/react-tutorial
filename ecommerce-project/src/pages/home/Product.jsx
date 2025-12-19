@@ -3,12 +3,11 @@ import { formatMoney } from "../../utils/money";
 import axios from "axios";
 export function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
-  const [showAddedMessage, setShowAddedMessage] = useState(false);;
+  const [showAddedMessage, setShowAddedMessage] = useState(false);
   const addToCart = async () => {
     await axios.post("/api/cart-items", {
       productId: product.id,
       quantity,
-      
     });
     await loadCart();
     setShowAddedMessage(true);
@@ -24,7 +23,8 @@ export function Product({ product, loadCart }) {
   return (
     <div className="product-container">
       <div className="product-image-container">
-        <img className="product-image" 
+        <img
+          className="product-image"
           src={product.image}
           data-testid="product-image"
         />
@@ -62,14 +62,21 @@ export function Product({ product, loadCart }) {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart" style={{
-        opacity: showAddedMessage ? 1 : 0,
-      }}>
+      <div
+        className="added-to-cart"
+        style={{
+          opacity: showAddedMessage ? 1 : 0,
+        }}
+      >
         <img src="images/icons/checkmark.png" />
         Added
       </div>
 
-      <button className="add-to-cart-button button-primary" onClick={addToCart}>
+      <button
+        className="add-to-cart-button button-primary"
+        onClick={addToCart}
+        data-testid="add-to-cart-button"
+      >
         Add to Cart
       </button>
     </div>
