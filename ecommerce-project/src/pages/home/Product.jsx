@@ -3,17 +3,24 @@ import { formatMoney } from "../../utils/money";
 import axios from "axios";
 export function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
+  const [showAddedMessage, setShowAddedMessage] = useState(false);;
   const addToCart = async () => {
     await axios.post("/api/cart-items", {
       productId: product.id,
       quantity,
+      
     });
     await loadCart();
+    setShowAddedMessage(true);
+
+    setTimeout(() => {
+      setShowAddedMessage(false);
+    }, 2000);
   };
   const selectQuantity = (event) => {
-            const quantitySelected = Number(event.target.value);
-            setQuantity(quantitySelected);
-          }
+    const quantitySelected = Number(event.target.value);
+    setQuantity(quantitySelected);
+  };
   return (
     <div className="product-container">
       <div className="product-image-container">
@@ -35,10 +42,7 @@ export function Product({ product, loadCart }) {
       <div className="product-price">{formatMoney(product.priceCents)}</div>
 
       <div className="product-quantity-container">
-        <select
-          value={quantity}
-          onChange={selectQuantity()}
-        >
+        <select value={quantity} onChange={selectQuantity}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -54,15 +58,14 @@ export function Product({ product, loadCart }) {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart">
+      <div className="added-to-cart" style={{
+        opacity: showAddedMessage ? 1 : 0,
+      }}>
         <img src="images/icons/checkmark.png" />
         Added
       </div>
 
-      <button
-        className="add-to-cart-button button-primary"
-        onClick={addToCart()}
-      >
+      <button className="add-to-cart-button button-primary" onClick={addToCart}>
         Add to Cart
       </button>
     </div>
