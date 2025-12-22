@@ -1,9 +1,44 @@
 import { useState} from "react";
 import { Chatbot } from "supersimpledev";
 import './ChatInput.css'; 
-export function ChatInput({ chatMessages, setChatMessages }) {
+
+// type ChatInputProps = {
+//   chatMessages: {
+//     message: string;
+//     sender: string;
+//     id: string;
+//   }[];
+// }
+//   setChatMessages: React.Dispatch<
+//     React.SetStateAction<
+//       {
+//         message: string;
+//         sender: "user" | "robot";
+//         id: string;
+//       }[]
+//     >
+//   >;
+// };
+
+
+type ChatMessages = {
+  message: string;
+  sender: string;
+  id: string;
+}[];
+
+type ChatInputProps = {
+  chatMessages: ChatMessages;
+  setChatMessages: (chatMessages: ChatMessages) => void;
+};
+
+export function ChatInput({ chatMessages, setChatMessages }: ChatInputProps) {
   const [inputText, setInputText] = useState("");
-  function saveInputText(event) {
+  function saveInputText(event: {
+    target: {
+      value: string;
+    };
+  }) {
     setInputText(event.target.value);
   }
   function sendMessage() {
@@ -33,7 +68,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
     <div className="chat-input-container">
       <input
         placeholder="Send a message to chatbot"
-        size="30"
+        size={30}
         onChange={saveInputText}
         value={inputText}
         className="chat-input"
