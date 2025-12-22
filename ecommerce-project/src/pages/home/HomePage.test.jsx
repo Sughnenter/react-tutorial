@@ -43,9 +43,9 @@ describe("home page component", () => {
   });
   it("displys the products correctly", async () => {
     render(
-      <memoryRouter>
+      <MemoryRouter>
         <HomePage cart={[]} loadCart={loadCart} />
-      </memoryRouter>
+      </MemoryRouter>
     );
     const productContainers  = await screen.findAllByTestId('product-container')
 
