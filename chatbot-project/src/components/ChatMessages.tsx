@@ -7,6 +7,7 @@ type ChatMessagesProps = {
     id: string;
     message: string;
     sender: string;
+    time:number;
   }[];
 };
 
@@ -21,12 +22,13 @@ function ChatMessages({ chatMessages }: {chatMessages: ChatMessagesProps[]}) {
   }, [chatMessages]);
   return (
     <div className="chat-messages-container" ref={chatMessagesRef}>
-      {chatMessages.map((chatMesssage) => {
+      {chatMessages.map((chatMessage) => {
         return (
           <ChatMessage
-            message={chatMesssage.message}
-            sender={chatMesssage.sender}
-            key={chatMesssage.id}
+            message={chatMessage.message}
+            sender={chatMessage.sender}
+            time={chatMessage.time}
+            key={chatMessage.id}
           />
         );
       })}
